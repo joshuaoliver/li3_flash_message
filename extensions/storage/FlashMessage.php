@@ -29,7 +29,7 @@ use lithium\util\String;
  * <?=$this->flashMessage->output(); ?>
  * }}}
  */
-class FlashMessage extends \lithium\core\StaticObject {
+class FlashMessage extends \lithium\core\StaticObjectDeprecated {
 
 	/**
 	 * Class dependencies.
