@@ -10,6 +10,7 @@ namespace li3_flash_message\extensions\storage;
 
 use lithium\core\Libraries;
 use lithium\util\Text;
+use lithium\core\AutoConfigurable;
 
 /**
  * Class for setting, getting and clearing flash messages. Use this class inside your
@@ -29,7 +30,7 @@ use lithium\util\Text;
  * <?=$this->flashMessage->output(); ?>
  * }}}
  */
-class FlashMessage extends \lithium\core\StaticObjectDeprecated {
+class FlashMessage {
 
 	/**
 	 * Class dependencies.
@@ -163,6 +164,14 @@ class FlashMessage extends \lithium\core\StaticObjectDeprecated {
 		$base    = static::$_config['session']['key'];
 		$key     = ($key === null) ? $base : "{$base}.{$key}";
 		return $session::delete($key, compact('name'));
+	}
+
+	protected function _init() {
+		/**
+		 * Handle custom initialization here
+		 */
+
+		$this->_autoConfig($this->_config, $this->_autoConfig);
 	}
 }
 
