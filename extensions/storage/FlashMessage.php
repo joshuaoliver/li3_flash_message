@@ -11,6 +11,7 @@ namespace li3_flash_message\extensions\storage;
 use lithium\core\Libraries;
 use lithium\util\Text;
 use lithium\core\AutoConfigurable;
+use lithium\aop\Filters;
 
 /**
  * Class for setting, getting and clearing flash messages. Use this class inside your
@@ -91,7 +92,7 @@ class FlashMessage {
 	 * @return object Returns the passed `$controller` instance.
 	 */
 	public static function bindTo($controller, array $options = array()) {
-		$controller->applyFilter('redirect', function($self, $params, $chain) use ($options) {
+		\lithium\aop\Filters::apply($controller,'redirect', function($self, $params, $chain) use ($options) {
 			$options =& $params['options'];
 
 			if (isset($params['options']['message'])) {
